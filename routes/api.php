@@ -19,6 +19,7 @@ Route::prefix('usuarios')->middleware('jwt.bearer')->group(function(){
 
 Route::prefix('auth')->group(function(){
     Route::post('/login', [LoginController::class,'login']);
+    Route::post('/register',[LoginController::class,'register']);
 });
 
 Route::middleware('jwt.bearer')->group(function () {
