@@ -47,3 +47,13 @@
 - Asegúrate de que tu servidor de MySQL esté activo.
 - Si modificas `.env`, recuerda reiniciar el servidor de Laravel.
 - JWT_SECRET es necesario para la autenticación con tokens.
+
+## Nota sobre el proyecto
+
+Este proyecto se entrega como **carpeta local**.  
+Si lo deseas, también puedes **clonar o descargar el repositorio** desde GitHub para tener acceso a la versión más reciente o realizar actualizaciones:
+
+```bash
+git clone https://github.com/Eddy2101/prueba-tecnica-backend.git
+
+git checkout master
