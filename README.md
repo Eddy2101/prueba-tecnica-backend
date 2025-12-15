@@ -24,15 +24,11 @@
 
         JWT_SECRET=Tjfq5oKFN9NfoWCxkedD9ssWT7H7Ew9yzBAlLBBsGifaUUONbxU79wE3ORdARiEE
         ```
-3. Generar la key de Laravel:
-    ```bash
-    php artisan key:generate
-    ```
-4. Migrar la base de datos:
+3. Migrar la base de datos:
     ```bash
     php artisan migrate
     ```
-5. Cargar datos iniciales (Seeders):
+4. Cargar datos iniciales (Seeders):
     ```bash
     php artisan db:seed
     ```
