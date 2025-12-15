@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Usuario\UpdateUsuarioRequest;
-use App\Http\Respositories\Interfaces\UsuarioRepositoryInterface;
+use App\Http\Repositories\Interfaces\UsuarioRepositoryInterface;
 use App\Http\Requests\Usuario\UsuarioRequest as saveUsuarioRequest;
 use Illuminate\Http\Response;
 
@@ -22,7 +22,7 @@ class UsuarioController extends Controller{
         $usuarios = $this->usuarioRepository->Listar();
 
         return response()->json([
-            "success"=> true,
+            "status"=> "OK",
             "message"=>"Se ejecuto correctamente",
             "data"=> $usuarios
         ],Response::HTTP_OK);
@@ -41,7 +41,7 @@ class UsuarioController extends Controller{
         $usuario = $this->usuarioRepository->Guardar($datos);
 
         return response()->json([
-            'success' => true,
+            'status'=> "OK",
             'message' => 'Se creo correctamente',
             'data' => $usuario
         ],Response::HTTP_CREATED);
@@ -60,13 +60,13 @@ class UsuarioController extends Controller{
 
         if (!$usuario) {
             return response()->json([
-                'success' => false,
+                'status'=> "ERROR",
                 'message' => 'No se encontro el usuario'
             ], 404);
         }
 
         return response()->json([
-            'success' => true,
+            'status'=> "OK",
             'message' => 'Se actualizo correctamente',
             'data' =>$usuario
         ], 200);

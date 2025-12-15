@@ -17,6 +17,7 @@ class StatusSeeder extends Seeder
             [
                 'code'=>'pen',
                 'name' => 'pending',
+                'color' => 'warn',
                 'order' => 1,
                 'is_active' => true,
                 'created_at' => now(),
@@ -25,6 +26,7 @@ class StatusSeeder extends Seeder
             [
                 'code' => 'don',
                 'name' => 'done',
+                'color' => 'success',
                 'order' => 2,
                 'is_active' => true,
                 'created_at' => now(),

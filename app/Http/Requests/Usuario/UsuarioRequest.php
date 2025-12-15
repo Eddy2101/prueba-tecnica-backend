@@ -27,8 +27,10 @@ class UsuarioRequest extends FormRequest
     {
         return [
             's_nombre.max' => 'El nombre no puede exceder 100 caracteres',
+            's_nombre.string' => 'El nombre debe ser un texto válido',
             's_email.email' => 'El email no es válido',
             's_email.unique' => 'Este email ya está registrado',
+            's_contrasenia.string' => 'La contraseña debe ser un texto válido',
             's_contrasenia.min' => 'La contraseña debe tener al menos 6 caracteres',
             's_contrasenia.confirmed' => 'Las contraseñas no coinciden',
         ];
@@ -37,7 +39,7 @@ class UsuarioRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'success' => false,
+            'status' => "ERROR",
             'errors' => $validator->errors()
         ], 422));
     }

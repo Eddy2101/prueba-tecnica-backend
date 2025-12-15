@@ -10,6 +10,13 @@ class Task extends Model
     //
     use HasUuids;
 
+    protected $primaryKey = 'c_id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    public $timestamps = false;
+
+    protected $table = 'tasks';
+
     protected $fillable = [
         'title',
         'description',
@@ -25,16 +32,15 @@ class Task extends Model
     protected $casts = [
         'c_activo' => 'string',
         'f_alta' => 'datetime',
-        'f_actualiza' => 'datetime',
     ];
 
     public function status()
     {
-        return $this->belongsTo(Status::class);
+        return $this->belongsTo(Status::class,'c_id_status');
     }
 
     public function priority()
     {
-        return $this->belongsTo(Priority::class);
+        return $this->belongsTo(Priority::class,'c_id_priority');
     }
 }

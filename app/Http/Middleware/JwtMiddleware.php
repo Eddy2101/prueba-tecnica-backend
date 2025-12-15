@@ -19,10 +19,10 @@ class JwtMiddleware{
         try {
             $payload = JWTAuth::parseToken()->getPayload();
 
-
+            
             if (!$payload) {
                 return response()->json([
-                    "success" => false,
+                    "status" => "ERROR",
                     "message" => "Usuario no encontrado"
                 ], 404);
             }
@@ -33,7 +33,7 @@ class JwtMiddleware{
             
             if (!$user) {
                 return response()->json([
-                    "success" => false,
+                    "status" => "ERROR",
                     "message" => "Usuario no encontrado"
                 ], 404);
             }
@@ -41,24 +41,24 @@ class JwtMiddleware{
 
         } catch (TokenExpiredException $e) {
             return response()->json([
-                "success" => false,
+                "status" => "ERROR",
                 "message" => "Token expirado"
             ], 401);
         } catch (TokenInvalidException $e) {
             return response()->json([
-                "success" => false,
+                "status" => "ERROR",
                 "message" => "Token inválido"
             ], 401);
         } catch (JWTException $e) {
            
             return response()->json([
-                "success" => false,
+                "status" => "ERROR",
                 "message" => "Error JWT: " . $e->getMessage()
             ], 401);
         } catch (\Exception $e) {
          
             return response()->json([
-                "success" => false,
+                "status" => "ERROR",
                 "message" => "Error de autenticación: " . $e->getMessage()
             ], 401);
         }

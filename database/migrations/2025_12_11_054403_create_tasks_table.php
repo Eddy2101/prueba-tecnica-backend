@@ -13,17 +13,16 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->uuid('c_id')->primary();
-            $table->timestamps();
             $table->string('title',150);
             $table->text('description',300)->nullable();
-            $table->foreignUuid('c_id_status')->constrained('status')->onDelete('restrict');
-            $table->foreignUuid('c_id_priority')->constrained('priorities')->onDelete('restrict');
+            $table->string('c_id_status',3)->constrained('status')->onDelete('restrict');
+            $table->string('c_id_priority',3)->constrained('priorities')->onDelete('restrict');
 
             // Auditoría
             $table->uuid('c_usu_alta')->nullable();
             $table->uuid('c_usu_actualiza')->nullable();
             $table->timestamp('f_alta')->useCurrent();
-            $table->timestamp('f_actualiza')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('f_actualiza')->nullable();;
             $table->string('c_activo',1)->default('S');
         });
     }

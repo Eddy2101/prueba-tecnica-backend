@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Login\LoginRequest;
 use App\Http\Requests\Login\RegisterRequest;
 use App\Http\Requests\Usuario\UsuarioRequest;
-use App\Http\Respositories\Interfaces\UsuarioRepositoryInterface;
+use App\Http\Repositories\Interfaces\UsuarioRepositoryInterface;
 use App\Models\UsuarioModel;
 use Illuminate\Http\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -28,16 +28,16 @@ class LoginController extends Controller{
             ->first();
 
         if (!$usuario) {
-            return response()->json(['message' => 'No existe usuario con estas credenciales','token'=>null], Response::HTTP_UNAUTHORIZED);
+            return response()->json(['status'=> 'ERROR','message' => 'No existe usuario con estas credenciales','token'=>null], Response::HTTP_UNAUTHORIZED);
         }
 
         if (!Hash::check($request->s_contrasenia, $usuario->s_contrasenia)) {
-            return response()->json(['message' => 'La contraseña es incorrecta','token'=>null], Response::HTTP_UNAUTHORIZED);
+            return response()->json(['status'=> 'ERROR','message' => 'La contraseña es incorrecta','token'=>null], Response::HTTP_UNAUTHORIZED);
         }
 
         $token = JWTAuth::fromUser($usuario);
         return response()->json([
-            'success' => true,
+            'status' => 'OK',
             'message' => 'Autenticación exitosa',
             'token' => $token
         ],Response::HTTP_OK);
@@ -56,7 +56,7 @@ class LoginController extends Controller{
         $usuario = $this->usuarioRepository->Guardar($datos);
 
         return response()->json([
-            'success' => true,
+            'status' => 'OK',
             'message' => 'Se creo correctamente',
             'data' => $usuario
         ],Response::HTTP_CREATED);

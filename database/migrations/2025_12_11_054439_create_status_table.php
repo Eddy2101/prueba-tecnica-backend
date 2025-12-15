@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('status', function (Blueprint $table) {
             $table->string('code',3)->primary();
             $table->string('name')->unique();
+            $table->string('color',100);
             $table->integer('order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

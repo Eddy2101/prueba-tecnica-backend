@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Respositories\Interfaces;
+namespace App\Http\Repositories\Interfaces;
 Interface UsuarioRepositoryInterface
 {
     public function Listar();
